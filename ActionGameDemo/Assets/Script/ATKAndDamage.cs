@@ -19,9 +19,6 @@ public class ATKAndDamage : MonoBehaviour
         if (hp > 0)
             hp -= damage;
 
-        if (gameObject.tag == Tags.soulBoss || gameObject.tag == Tags.soulMonster)
-            print("TakeDamage()/" + gameObject.tag + "  hp = " + hp + ", damage =" + damage);
-
         if (hp > 0)
         {
             if (gameObject.tag == Tags.soulBoss || gameObject.tag == Tags.soulMonster)
@@ -35,6 +32,7 @@ public class ATKAndDamage : MonoBehaviour
             {
                 isOnceDead = true;
                 animator.SetTrigger("Dead");
+                SpawnAward();
                 Destroy(this.gameObject, 1);
                 this.GetComponent<CharacterController>().enabled = false;
                 if (gameObject.tag == Tags.soulBoss || gameObject.tag == Tags.soulMonster)
@@ -45,12 +43,20 @@ public class ATKAndDamage : MonoBehaviour
         }
 
         if (this.gameObject.tag == Tags.soulBoss)
-        {
             GameObject.Instantiate(Resources.Load("HitBoss"), transform.position + Vector3.up, transform.rotation);
-        }
         else if (this.gameObject.tag == Tags.soulMonster)
-        {
             GameObject.Instantiate(Resources.Load("HitMonster"), transform.position + Vector3.up / 2, transform.rotation);
+    }
+
+    void SpawnAward()
+    {
+        int count = Random.Range(1, 3);
+        for (int i = 0; i < count; i++)
+        {
+            if (Random.Range(0, 2) == 0)
+                GameObject.Instantiate(Resources.Load("Item_DualSword"), transform.position + Vector3.up, Quaternion.identity);
+            else
+                GameObject.Instantiate(Resources.Load("Item_Gun"), transform.position + Vector3.up, Quaternion.identity);
         }
     }
 }
