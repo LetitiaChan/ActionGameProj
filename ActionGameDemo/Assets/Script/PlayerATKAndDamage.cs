@@ -6,6 +6,8 @@ public class PlayerATKAndDamage : ATKAndDamage
 {
     public float attackB = 80;
     public float attackRange = 100;
+    public float attackGun = 100;
+    public WeaponGun gun;
 
     public void AttackA()
     {
@@ -80,6 +82,7 @@ public class PlayerATKAndDamage : ATKAndDamage
 
     public void AttackGun()
     {
-
+        gun.attack = attackGun;
+        gun.Shoot();
     }
 }

@@ -50,6 +50,7 @@ public class PlayerPickItem : MonoBehaviour
         goGun.SetActive(false);
         dualSwordTimer = 0;
         gunTimer = 0;
+        UIAttack.Instance.TurnToSwordAttack();
     }
     void TurnToDualSword()
     {
@@ -58,6 +59,7 @@ public class PlayerPickItem : MonoBehaviour
         goGun.SetActive(false);
         dualSwordTimer = existTime;
         gunTimer = 0;
+        UIAttack.Instance.TurnToSwordAttack();
     }
 
     void TurnToGun()
@@ -67,6 +69,7 @@ public class PlayerPickItem : MonoBehaviour
         goGun.SetActive(true);
         gunTimer = existTime;
         dualSwordTimer = 0;
+        UIAttack.Instance.TurnToGunkAttack();
     }
 
 }
