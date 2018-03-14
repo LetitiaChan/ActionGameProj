@@ -8,6 +8,7 @@ public class SoulBoss : MonoBehaviour
     public float attackInterval = 3.0f;
 
     private Transform player;
+    private PlayerATKAndDamage playerATKDamage;
     private CharacterController cc;
     private Animator animator;
     private float atkTimer = 0;
@@ -18,10 +19,17 @@ public class SoulBoss : MonoBehaviour
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         atkTimer = attackInterval;
+        playerATKDamage = player.GetComponent<PlayerATKAndDamage>();
     }
 
     void Update()
     {
+        if (!player || !playerATKDamage || playerATKDamage.hp <= 0)
+        {
+            animator.SetFloat("Speed", 0);
+            return;
+        }
+
         Vector3 targetPos = player.position;
         targetPos.y = transform.position.y;
         transform.LookAt(targetPos);

@@ -4,10 +4,16 @@ using System.Collections.Generic;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager Instance;
     public EnemySpawn[] monsterSpawnList;
     public EnemySpawn[] bossSpawnList;
-    private List<GameObject> enemyList = new List<GameObject>();
+    public List<GameObject> enemyList = new List<GameObject>();
 
+
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         StartCoroutine("Spawn");

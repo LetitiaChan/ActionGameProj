@@ -7,26 +7,32 @@ public class SoulMonster : MonoBehaviour
     public float attackDistance = 1.0f;
     public float attackInterval = 3.0f;
 
-    private Transform player;
+    private GameObject player;
+    private PlayerATKAndDamage playerATKDamage;
     private CharacterController cc;
     private Animator animator;
     private float atkTimer = 0;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag(Tags.player).transform;
+        player = GameObject.FindGameObjectWithTag(Tags.player);
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         atkTimer = attackInterval;
+        playerATKDamage = player.GetComponent<PlayerATKAndDamage>();
     }
 
     void Update()
     {
-        Vector3 targetPos = player.position;
+        if (!player ||!playerATKDamage || playerATKDamage.hp <= 0)
+        {
+            animator.SetFloat("Speed", 0);
+            return;
+        }
+        Vector3 targetPos = player.transform.position;
         targetPos.y = transform.position.y;
         transform.LookAt(targetPos);
-
-        float distance = Vector3.Distance(player.position, transform.position);
+        float distance = Vector3.Distance(targetPos, transform.position);
         if (distance <= attackDistance)
         {
             atkTimer += Time.deltaTime;

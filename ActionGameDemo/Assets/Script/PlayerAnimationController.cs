@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerATK : MonoBehaviour
+public class PlayerAnimationController : MonoBehaviour
 {
     private CharacterController _cc;
     private Animator _animator;
