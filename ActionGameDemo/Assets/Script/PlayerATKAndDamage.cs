@@ -32,6 +32,7 @@ public class PlayerATKAndDamage : ATKAndDamage
             targetPos.y = transform.position.y;
             transform.LookAt(targetPos);
 
+            AudioManager.PlayAudioEffectA("PlayerSwordSwing");
             enemy.GetComponent<ATKAndDamage>().TakeDamage(attackNormal);
         }
     }
@@ -58,6 +59,7 @@ public class PlayerATKAndDamage : ATKAndDamage
             targetPos.y = transform.position.y;
             transform.LookAt(targetPos);
 
+            AudioManager.PlayAudioEffectA("PlayerSwordSwing");
             enemy.GetComponent<ATKAndDamage>().TakeDamage(attackB);
         }
     }
@@ -73,6 +75,7 @@ public class PlayerATKAndDamage : ATKAndDamage
                 enemyInRange.Add(go);
             }
         }
+        AudioManager.PlayAudioEffectA("PlayerSwordSwing");
         foreach (var enemy in enemyInRange)
         {
             if (enemy && enemy.GetComponent<ATKAndDamage>())
@@ -82,6 +85,7 @@ public class PlayerATKAndDamage : ATKAndDamage
 
     public void AttackGun()
     {
+        AudioManager.PlayAudioEffectA("PlayerGunShot");
         gun.attack = attackGun;
         gun.Shoot();
     }

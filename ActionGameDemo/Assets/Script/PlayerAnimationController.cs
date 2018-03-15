@@ -10,6 +10,10 @@ public class PlayerAnimationController : MonoBehaviour
     {
         _cc = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        AudioManager.AudioBackgroundVolumns = 0.5f;
+        AudioManager.AudioEffectVolumns = 1f;
+        AudioManager.PlayBackgroundA("BGM");
+        AudioManager.PlayBackgroundB("Thunderstorm");
     }
 
     public void ATKNormal()

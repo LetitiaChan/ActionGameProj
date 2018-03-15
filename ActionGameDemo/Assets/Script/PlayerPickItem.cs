@@ -30,6 +30,7 @@ public class PlayerPickItem : MonoBehaviour
 
     public void PickUpItem(AwardType type)
     {
+        AudioManager.PlayAudioEffectA("ItemPickup");
         switch (type)
         {
             case AwardType.Gun:

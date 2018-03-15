@@ -31,6 +31,12 @@ public class ATKAndDamage : MonoBehaviour
             if (!isOnceDead)
             {
                 isOnceDead = true;
+
+                if (gameObject.tag == Tags.soulMonster)
+                    AudioManager.PlayAudioEffectB("MonterDeath");
+                else if (gameObject.tag == Tags.soulBoss)
+                    AudioManager.PlayAudioEffectB("BossDeath");
+
                 animator.SetTrigger("Dead");
                 SpawnAward();
                 Destroy(this.gameObject, 1);
@@ -53,9 +59,9 @@ public class ATKAndDamage : MonoBehaviour
         int count = Random.Range(1, 3);
         for (int i = 0; i < count; i++)
         {
-            //if (Random.Range(0, 2) == 0)
-            //    GameObject.Instantiate(Resources.Load("Item_DualSword"), transform.position + Vector3.up, Quaternion.identity);
-            //else
+            if (Random.Range(0, 2) == 0)
+                GameObject.Instantiate(Resources.Load("Item_DualSword"), transform.position + Vector3.up, Quaternion.identity);
+            else
                 GameObject.Instantiate(Resources.Load("Item_Gun"), transform.position + Vector3.up, Quaternion.identity);
         }
     }

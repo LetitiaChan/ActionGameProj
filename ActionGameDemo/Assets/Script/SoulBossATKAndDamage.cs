@@ -13,6 +13,7 @@ public class SoulBossATKAndDamage : ATKAndDamage
 
     public void Attack1()
     {
+        AudioManager.PlayAudioEffectB("BossAttack");
         if (player && Vector3.Distance(transform.position, player.transform.position) < attackDistance)
         {
             player.GetComponent<ATKAndDamage>().TakeDamage(attackNormal);
@@ -21,6 +22,7 @@ public class SoulBossATKAndDamage : ATKAndDamage
 
     public void Attack2()
     {
+        AudioManager.PlayAudioEffectB("BossAttack");
         if (player && Vector3.Distance(transform.position, player.transform.position) < attackDistance)
         {
             player.GetComponent<ATKAndDamage>().TakeDamage(attackNormal);
