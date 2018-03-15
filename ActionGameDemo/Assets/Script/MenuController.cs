@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    public static MenuController Instance;
+
     public SkinnedMeshRenderer headMesh;
     public Mesh[] headMeshList;
     private int headMeshIndex = 0;
@@ -12,7 +14,15 @@ public class MenuController : MonoBehaviour
     public Mesh[] handMeshList;
     private int handMeshIndex = 0;
 
+    public SkinnedMeshRenderer[] bodyMeshList;
+    [HideInInspector]
+    public Color[] colorList = new Color[] { Color.white, Color.red, Color.magenta, Color.blue, Color.cyan, Color.green };
     private int colorIndex = 0;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -69,7 +79,10 @@ public class MenuController : MonoBehaviour
 
     void OnChangeColor(Color clr)
     {
-        headMesh.sharedMaterial.color = clr;
+        foreach (var body in bodyMeshList)
+        {
+            body.material.color = clr;
+        }
     }
 
     void SaveSetting()
@@ -77,7 +90,6 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("HeadMeshIndex", headMeshIndex);
         PlayerPrefs.SetInt("HandMeshIndex", handMeshIndex);
         PlayerPrefs.SetInt("ColorIndex", colorIndex);
-        Debug.Log(headMeshIndex + "," + handMeshIndex + "," + colorIndex);
         PlayerPrefs.Save();
     }
 }
