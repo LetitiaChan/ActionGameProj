@@ -5,7 +5,7 @@ public class SoulBossATKAndDamage : ATKAndDamage
 {
     private GameObject player;
 
-    void Awake()
+    protected override void Awake()
     {
         base.Awake();
         player = GameObject.FindGameObjectWithTag(Tags.player);
@@ -16,7 +16,7 @@ public class SoulBossATKAndDamage : ATKAndDamage
         AudioManager.PlayAudioEffectB("BossAttack");
         if (player && Vector3.Distance(transform.position, player.transform.position) < attackDistance)
         {
-            player.GetComponent<ATKAndDamage>().TakeDamage(attackNormal);
+            player.GetComponent<PlayerATKAndDamage>().TakeDamage(attackNormal);
         }
     }
 
@@ -25,7 +25,7 @@ public class SoulBossATKAndDamage : ATKAndDamage
         AudioManager.PlayAudioEffectB("BossAttack");
         if (player && Vector3.Distance(transform.position, player.transform.position) < attackDistance)
         {
-            player.GetComponent<ATKAndDamage>().TakeDamage(attackNormal);
+            player.GetComponent<PlayerATKAndDamage>().TakeDamage(attackNormal);
         }
     }
 }

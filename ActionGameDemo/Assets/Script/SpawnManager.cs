@@ -9,6 +9,9 @@ public class SpawnManager : MonoBehaviour
     public EnemySpawn[] bossSpawnList;
     public List<GameObject> enemyList = new List<GameObject>();
 
+    [HideInInspector]
+    public bool IsFinishSpwan = false;
+
 
     void Awake()
     {
@@ -21,7 +24,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator Spawn()
     {
-        //第一波敌人
+        //The first batch of enemy
         foreach (var pos in monsterSpawnList)
         {
             enemyList.Add(pos.Spawn());
@@ -31,7 +34,7 @@ public class SpawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(0.2f);
         }
-        //第二波敌人
+        //The second batch of enemy
         foreach (var pos in monsterSpawnList)
         {
             enemyList.Add(pos.Spawn());
@@ -46,7 +49,7 @@ public class SpawnManager : MonoBehaviour
         {
             yield return new WaitForSeconds(0.2f);
         }
-        //第三波敌人
+        //The third batch of enemy
         foreach (var pos in monsterSpawnList)
         {
             enemyList.Add(pos.Spawn());
@@ -61,5 +64,6 @@ public class SpawnManager : MonoBehaviour
         {
             enemyList.Add(pos.Spawn());
         }
+        IsFinishSpwan = true;
     }
 }

@@ -5,7 +5,7 @@ public class SoulMonsterATKAndDamage : ATKAndDamage
 {
     private GameObject player;
 
-    void Awake()
+    protected override void Awake()
     {
         base.Awake();
         player = GameObject.FindGameObjectWithTag(Tags.player);

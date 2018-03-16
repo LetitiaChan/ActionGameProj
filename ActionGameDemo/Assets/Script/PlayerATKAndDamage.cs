@@ -18,7 +18,9 @@ public class PlayerATKAndDamage : ATKAndDamage
         float distance = attackDistance;
         foreach (var go in SpawnManager.Instance.enemyList)
         {
-            var temp = Vector3.Distance(go.transform.position, this.transform.position);
+            var goPos = go.transform.position;
+            goPos.y = transform.position.y;
+            var temp = Vector3.Distance(goPos, transform.position);
             if (temp < distance)
             {
                 enemy = go;
@@ -45,7 +47,9 @@ public class PlayerATKAndDamage : ATKAndDamage
         float distance = attackDistance;
         foreach (var go in SpawnManager.Instance.enemyList)
         {
-            var temp = Vector3.Distance(go.transform.position, this.transform.position);
+            var goPos = go.transform.position;
+            goPos.y = transform.position.y;
+            var temp = Vector3.Distance(goPos, transform.position);
             if (temp < distance)
             {
                 enemy = go;
@@ -70,7 +74,9 @@ public class PlayerATKAndDamage : ATKAndDamage
         List<GameObject> enemyInRange = new List<GameObject>();
         foreach (var go in SpawnManager.Instance.enemyList)
         {
-            if (Vector3.Distance(go.transform.position, transform.position) < attackDistance)
+            var goPos = go.transform.position;
+            goPos.y = transform.position.y;
+            if (Vector3.Distance(goPos, transform.position) < attackDistance)
             {
                 enemyInRange.Add(go);
             }

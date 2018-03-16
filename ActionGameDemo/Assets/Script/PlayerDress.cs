@@ -15,6 +15,8 @@ public class PlayerDress : MonoBehaviour
 
     void InitDress()
     {
+        if (MenuController.Instance == null) return;
+
         int headMeshIndex = PlayerPrefs.GetInt("HeadMeshIndex");
         int handMeshIndex = PlayerPrefs.GetInt("HandMeshIndex");
         int colorIndex = PlayerPrefs.GetInt("ColorIndex");

@@ -9,7 +9,7 @@ public class ATKAndDamage : MonoBehaviour
     protected Animator animator;
     private bool isOnceDead = false;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
     }
@@ -36,13 +36,16 @@ public class ATKAndDamage : MonoBehaviour
                     AudioManager.PlayAudioEffectB("MonterDeath");
                 else if (gameObject.tag == Tags.soulBoss)
                     AudioManager.PlayAudioEffectB("BossDeath");
+                else if (gameObject.tag == Tags.player)
+                    SceneMgr.Instance.IsPlayerAlive = false;
 
                 animator.SetTrigger("Dead");
-                SpawnAward();
-                Destroy(this.gameObject, 1);
                 this.GetComponent<CharacterController>().enabled = false;
+
                 if (gameObject.tag == Tags.soulBoss || gameObject.tag == Tags.soulMonster)
                 {
+                    Destroy(this.gameObject, 1);
+                    SpawnAward();
                     SpawnManager.Instance.enemyList.Remove(this.gameObject);
                 }
             }
@@ -56,13 +59,14 @@ public class ATKAndDamage : MonoBehaviour
 
     void SpawnAward()
     {
-        int count = Random.Range(1, 3);
+        int count = Random.Range(0, 2);
         for (int i = 0; i < count; i++)
         {
             if (Random.Range(0, 2) == 0)
                 GameObject.Instantiate(Resources.Load("Item_DualSword"), transform.position + Vector3.up, Quaternion.identity);
             else
                 GameObject.Instantiate(Resources.Load("Item_Gun"), transform.position + Vector3.up, Quaternion.identity);
+
         }
     }
 }

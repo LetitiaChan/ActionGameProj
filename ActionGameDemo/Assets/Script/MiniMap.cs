@@ -23,7 +23,6 @@ public class MiniMap : MonoBehaviour
     {
         GameObject go = Instantiate(Resources.Load("SymbolBoss")) as GameObject;
         go.transform.SetParent(transform, false);
-        //go.transform.SetAsLastSibling();
         return go;
     }
 

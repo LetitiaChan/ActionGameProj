@@ -7,4 +7,5 @@ public class Tags : MonoBehaviour
     public const string soulMonster = "SoulMonster";
     public const string soulBoss = "SoulBoss";
     public const string ground = "Ground";
+    public const string dropItem = "DropItem";
 }

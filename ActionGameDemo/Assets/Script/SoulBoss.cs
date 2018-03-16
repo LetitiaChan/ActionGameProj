@@ -4,10 +4,10 @@ using System.Collections;
 public class SoulBoss : MonoBehaviour
 {
     public float speed = 2;
-    public float attackDistance = 1.5f;
+    public float attackDistance = 2f;
     public float attackInterval = 3.0f;
 
-    private Transform player;
+    private GameObject player;
     private PlayerATKAndDamage playerATKDamage;
     private CharacterController cc;
     private Animator animator;
@@ -15,7 +15,7 @@ public class SoulBoss : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag(Tags.player).transform;
+        player = GameObject.FindGameObjectWithTag(Tags.player);
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         atkTimer = attackInterval;
@@ -30,11 +30,11 @@ public class SoulBoss : MonoBehaviour
             return;
         }
 
-        Vector3 targetPos = player.position;
+        Vector3 targetPos = player.transform.position;
         targetPos.y = transform.position.y;
         transform.LookAt(targetPos);
 
-        float distance = Vector3.Distance(player.position, transform.position);
+        float distance = Vector3.Distance(targetPos, transform.position);
         if (distance <= attackDistance)
         {
             atkTimer += Time.deltaTime;
@@ -43,13 +43,9 @@ public class SoulBoss : MonoBehaviour
                 atkTimer = 0;
 
                 if (Random.Range(0.0f, 1.0f) > 0.5f)
-                {
                     animator.SetTrigger("Attack1");
-                }
                 else
-                {
                     animator.SetTrigger("Attack2");
-                }
             }
             else
             {

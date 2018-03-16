@@ -29,9 +29,11 @@ public class SoulMonster : MonoBehaviour
             animator.SetFloat("Speed", 0);
             return;
         }
+
         Vector3 targetPos = player.transform.position;
         targetPos.y = transform.position.y;
         transform.LookAt(targetPos);
+
         float distance = Vector3.Distance(targetPos, transform.position);
         if (distance <= attackDistance)
         {
